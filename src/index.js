@@ -7,6 +7,7 @@ const breedUrl = "https://dog.ceo/api/breeds/list/all"
    const imgDiv = document.getElementById("dog-image-container")
    const breedsList = document.getElementById("dog-breeds")
    const breedDropdown = document.getElementById("breed-dropdown")
+   const allLis = document.getElementsByTagName("li")
 
    //First fetch request
    fetch(imgUrl)
@@ -43,7 +44,7 @@ const breedUrl = "https://dog.ceo/api/breeds/list/all"
        }
      });
 
-     const allLis = document.getElementsByTagName("li")
+
 
      function createImage(url) {
        const newImage = document.createElement("img")
@@ -56,14 +57,19 @@ const breedUrl = "https://dog.ceo/api/breeds/list/all"
        newBreed.textContent = breedName
        breedsList.appendChild(newBreed)
 
+       // Adding event listener for clicks upon creation of li
        newBreed.addEventListener("click", () => {
-         newBreed.style.color = "green"
+         if (newBreed.style.color === "green") {
+           newBreed.style.color = "black"
+         }
+         else {
+           newBreed.style.color = "green"
+         }
        })
      }
 
      breedDropdown.addEventListener("change", (event) => {
        for (li of allLis){
-         console.log(li.textContent)
          if (li.textContent.startsWith(event.target.value) ) {
            li.style.display = ""
          }
