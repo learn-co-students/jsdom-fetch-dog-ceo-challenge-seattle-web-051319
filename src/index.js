@@ -65,7 +65,7 @@ const breedUrl = "https://dog.ceo/api/breeds/list/all"
        for (li of allLis){
          console.log(li.textContent)
          if (li.textContent.startsWith(event.target.value) ) {
-           li.style.display = "block"
+           li.style.display = ""
          }
          else {
            li.style.display = "none"
