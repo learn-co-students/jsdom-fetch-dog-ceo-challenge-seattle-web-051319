@@ -30,7 +30,7 @@ const breedUrl = "https://dog.ceo/api/breeds/list/all"
      .then(json => {
        let breeds = json.message
        let newBreeds = []
-       for (let breed in breeds) {
+       for (breed in breeds) {
          if (breeds[breed].length > 1) {
            for (prefix of breeds[breed])
               newBreeds.push(`${prefix} ${breed}`)
