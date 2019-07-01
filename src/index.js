@@ -78,7 +78,7 @@ function breedEventListener(){
 
 
 //displays images
-// fetchDogs()
+fetchDogs()
 
 fetchBreeds()
 breedEventListener();
