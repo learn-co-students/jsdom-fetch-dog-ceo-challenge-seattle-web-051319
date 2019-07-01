@@ -3,17 +3,10 @@ console.log('%c HI', 'color: firebrick')
 const imgUrl = "https://dog.ceo/api/breeds/image/random/4"
 const breedUrl = 'https://dog.ceo/api/breeds/list/all'
 const dropdownValue = document.querySelector("select").value
-console.log(dropdownValue);
+// console.log(dropdownValue);
 const allBreeds = [];
 const dropdown = document.getElementById("breed-dropdown")
-dropdown.addEventListener('change', () => {
-  console.log('changed!');
-  let filteredDogs = allBreeds.filter(dog => {
-    return dog[0] === dropdown.value;
-  })
-  console.log('filtered Dogs', filteredDogs)
 
-})
 // <div id="dog-image-container">
 //   <!-- images here -->
 // </div>
@@ -40,6 +33,8 @@ function fetchBreeds(){
 function addBreed(breed){
   // initially, list all dog breeds
   const breedList = document.getElementById('dog-breeds')
+  breedList.innerHTML = '';
+
   for (let dog in breed) {
     allBreeds.push(dog);
     const listItem = document.createElement('li')
@@ -48,22 +43,33 @@ function addBreed(breed){
     breedList.appendChild(listItem)
   }
 
+}
+
+function filterBreeds(filterValue){
+  const breeds = document.getElementById("dog-breeds").children
+  // console.log("breeds")
+
+  for (let i = 0; i < breeds.length; i++){
+    if (breeds[i].innerText[0] !==  filterValue){
+      // console.log(breeds[i].innerText)
+      breeds[i].style.display = "none";
+    } else {
+      breeds[i].style.display = '';
+    }
+  }
+
+}
+function breedEventListener(){
+
+  dropdown.addEventListener("change", function(){
+    filterBreeds(dropdown.value)
+    // console.log(dropdown)
+  })
+  // console.log('filtered Dogs', dropdown.value)
 
 
 }
 
-//     if (dog.slice(0,1) == dropdownValue) { //dog's first letter is equal to dropdown value )
-
-
-
-// This is how you get dropdown value
-// document.querySelector("select").value
-
-// for each dropdown option value,
-
-
-// <label for="select-breed">Filter Breeds That Start with:</label>
-// <select id="breed-dropdown" name="select-breed">
 
 
 
@@ -71,11 +77,8 @@ function addBreed(breed){
 
 
 
-
-
-
-
-
-
+//displays images
 // fetchDogs()
+
 fetchBreeds()
+breedEventListener();
